@@ -3,7 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 //import { Route, Switch, Router } from 'react-router';
 //import About from './components/About';
-import Radium, { StyleRoot } from 'radium';
+
 
 class App extends Component {
 
@@ -117,7 +117,7 @@ deletePersonHandler = (personIndex) => {
       //<Router path="/about" Component={ About } />
       //<button style={style} onClick={this.switchNameHandler}>Switch Name</button>
 
-      <StyleRoot>
+ 
       <div className="App">
         <h1 className={classes.join(' ')}>I love ReactJs</h1>
 
@@ -128,9 +128,9 @@ deletePersonHandler = (personIndex) => {
         onClick={this.togglePersonHandler}>Toggle Person</button>
         {persons}
     </div>
-    </StyleRoot>
+
     );
   }
 }
 
-export default Radium(App);
+export default App;
