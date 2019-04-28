@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.module.css';
 import Person from './Person/Person';
+import ErrorBoundry from './ErrorBoundry/ErrorBoundry';
 
 class App extends Component {
 
@@ -31,16 +32,11 @@ changeNameHandler = (event, id) => {
   const personIndex = this.state.persons.findIndex(person => {
     return person.id === id;
   })
-  //console.log(personIndex);
   const person = {...this.state.persons[personIndex]};
-  //console.log(person.name);
   person.name = event.target.value;
-
   const persons = [...this.state.persons];
   persons[personIndex] = person;
-  //console.log(this.state.persons[personIndex].name);
   this.setState({persons:persons});
-  //console.log(this.state.persons[personIndex].name);
 }
 
 togglePersonHandler = () => {
@@ -80,12 +76,13 @@ deletePersonHandler = (personIndex) => {
       <div>
       {
         this.state.persons.map((person,index) => {
-          return <Person 
+          return <ErrorBoundry key={person.id}>
+          <Person 
           click={() => this.deletePersonHandler(index)} 
           name={person.name} 
-          age={person.age}
-          key={person.id} 
+          age={person.age}         
           change={(event) => this.changeNameHandler(event, person.id)}/>
+          </ErrorBoundry>
         })
         
       }
