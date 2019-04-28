@@ -2,11 +2,6 @@ import React from 'react';
 import styles from '../Person/Person.module.css';
 
 const person = (props) => {
-   const random = Math.random();
-   if(random>0.7){
-      throw new Error("React Error");
-   }
-
     return (
          <div className={styles.Person}>
             <p onClick={props.click}>My name is {props.name} and age is {props.age}</p>
