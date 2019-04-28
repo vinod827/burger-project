@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.module.css';
 import Person from './Person/Person';
-//import { Route, Switch, Router } from 'react-router';
-//import About from './components/About';
-
 
 class App extends Component {
 
@@ -64,29 +61,17 @@ deletePersonHandler = (personIndex) => {
 }
 
   render() {
-    const style = {
-      backgroundColor:'green',
-      color:'white',
-      border:'1px solid red',
-      font:'inherit',
-      padding:'8px',
-      cursor:'pointer',
-      ':hover':{
-        backgroundColor:'lightgreen',
-        color:'black'
-      }
-    };
+    let btnClass = '';
 
-
-    let classes = [];
+    let assignedClasses = [];
     if(this.state.persons.length <= 3){
-      classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if(this.state.persons.length <=2){
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     }
     if(this.state.persons.length <=1){
-      classes.push('yellow');
+      assignedClasses.push(classes.yellow);
     }
 
   let persons = null;
@@ -106,26 +91,14 @@ deletePersonHandler = (personIndex) => {
       }
       </div>
     );
-    style.backgroundColor='red';
-    style[':hover'] = {
-      backgroundColor:'salmon',
-      color:'black'
-    }
+
+    btnClass = classes.Red;
   }
 
     return (
-      //<Router path="/about" Component={ About } />
-      //<button style={style} onClick={this.switchNameHandler}>Switch Name</button>
-
- 
-      <div className="App">
-        <h1 className={classes.join(' ')}>I love ReactJs</h1>
-
-        
-
-        <button
-        style={style}
-        onClick={this.togglePersonHandler}>Toggle Person</button>
+      <div className={classes.App}>
+        <h1 className={assignedClasses.join(' ')}>I love ReactJs</h1>
+        <button className={btnClass} onClick={this.togglePersonHandler}>Toggle Person</button>
         {persons}
     </div>
 

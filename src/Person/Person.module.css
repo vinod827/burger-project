@@ -1,0 +1,11 @@
+.Person{
+  width: 70%;
+  margin: 16px auto;
+  border: 1px solid orange;
+}
+
+@media (min-width:500px){
+    .Person{
+        width:450px;
+    }
+}
