@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import classes from './App.module.css';
-import Person from './Person/Person';
-import ErrorBoundry from './ErrorBoundry/ErrorBoundry';
+import classes from '../components/App.module.css';
+import Person from '../components/Persons/Person/Person';
+import ErrorBoundry from '../components/ErrorBoundry/ErrorBoundry';
 
 class App extends Component {
 
@@ -94,7 +94,7 @@ deletePersonHandler = (personIndex) => {
 
     return (
       <div className={classes.App}>
-        <h1 className={assignedClasses.join(' ')}>I love ReactJs</h1>
+        <h1 className={assignedClasses.join(' ')}>F</h1>
         <button className={btnClass} onClick={this.togglePersonHandler}>Toggle Person</button>
         {persons}
     </div>
