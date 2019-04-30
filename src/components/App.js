@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import classes from '../components/App.module.css';
-import Person from '../components/Persons/Person/Person';
-import ErrorBoundry from '../components/ErrorBoundry/ErrorBoundry';
+//import Person from '../components/Persons/Person/Person';
+//import ErrorBoundry from '../components/ErrorBoundry/ErrorBoundry';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 
@@ -57,45 +59,22 @@ deletePersonHandler = (personIndex) => {
 }
 
   render() {
-    let btnClass = '';
-
-    let assignedClasses = [];
-    if(this.state.persons.length <= 3){
-      assignedClasses.push(classes.red);
-    }
-    if(this.state.persons.length <=2){
-      assignedClasses.push(classes.bold);
-    }
-    if(this.state.persons.length <=1){
-      assignedClasses.push(classes.yellow);
-    }
 
   let persons = null;
   if(this.state.showPerson){
-    persons = (
-      <div>
-      {
-        this.state.persons.map((person,index) => {
-          return <ErrorBoundry key={person.id}>
-          <Person 
-          click={() => this.deletePersonHandler(index)} 
-          name={person.name} 
-          age={person.age}         
-          change={(event) => this.changeNameHandler(event, person.id)}/>
-          </ErrorBoundry>
-        })
-        
-      }
-      </div>
-    );
-
-    btnClass = classes.Red;
+    persons = <Persons 
+          persons={this.state.persons} 
+          clicked={this.deletePersonHandler} 
+          changed={this.changeNameHandler} />;
   }
 
     return (
       <div className={classes.App}>
-        <h1 className={assignedClasses.join(' ')}>F</h1>
-        <button className={btnClass} onClick={this.togglePersonHandler}>Toggle Person</button>
+        <Cockpit 
+           showPersons={this.state.showPersons} 
+           persons={this.state.persons} 
+           buttonClass={this.btnClass} 
+           clicked={this.togglePersonHandler}/>
         {persons}
     </div>
 
