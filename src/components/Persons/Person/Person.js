@@ -4,6 +4,7 @@ import styles from './Person.module.css';
 const person = (props) => {
     return (
          <div className={styles.Person}>
+            <h1>{props.title}</h1>
             <p onClick={props.click}>My name is {props.name} and age is {props.age}</p>
             <p>{props.children}</p>
             <input value={props.name} onChange={props.change}/>

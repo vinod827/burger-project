@@ -7,6 +7,17 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 
+  constructor(props){
+    super(props);
+    console.log("Constructor is called");
+  }
+
+  getDerivedStateFromProps(props, state){
+    console.log("getDerivedStateFromProps(props,state)");
+  }
+
+
+
   state = {
      persons: [
        {id:'1', name:"Vijay Kumar", age: 34},
@@ -58,8 +69,12 @@ deletePersonHandler = (personIndex) => {
  this.setState({persons:persons});
 }
 
-  render() {
+componentDidMount(){
+ console.log("componentDidMount()");
+}
 
+  render() {
+    console.log("render()");
   let persons = null;
   if(this.state.showPerson){
     persons = <Persons 
@@ -71,6 +86,7 @@ deletePersonHandler = (personIndex) => {
     return (
       <div className={classes.App}>
         <Cockpit 
+           title={this.props.appTitle}
            showPersons={this.state.showPersons} 
            persons={this.state.persons} 
            buttonClass={this.btnClass} 
