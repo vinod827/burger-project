@@ -17,6 +17,10 @@ class Persons extends Component {
     return true;
   }
 
+  componentWillUnmount(){
+    console.log("[Persons.js - componentwillUnmount()");
+  }
+
   getSnapshotBeforeUpdate(preprops, prestate){
     console.log("getSnapshotBeforeUpdate");
     return {message: 'Snapshot!'};
