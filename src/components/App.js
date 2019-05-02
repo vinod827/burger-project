@@ -12,8 +12,10 @@ class App extends Component {
     console.log("Constructor is called");
   }
 
-  getDerivedStateFromProps(props, state){
+  static getDerivedStateFromProps(props, state){
     console.log("getDerivedStateFromProps(props,state)");
+    console.log(state);
+    console.log(props);
   }
 
 
