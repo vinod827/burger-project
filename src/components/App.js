@@ -71,6 +71,13 @@ deletePersonHandler = (personIndex) => {
  this.setState({persons:persons});
 }
 
+componentDidUpdate(){
+  console.log("[App.js]-componentDidUpdate()");
+}
+shouldComponentUpdate(preprops,prestate){
+  console.log("[App.js]-shouldComponentUpdate");
+  return true;
+}
 componentDidMount(){
  console.log("componentDidMount()");
 }

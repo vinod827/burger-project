@@ -1,17 +1,20 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styles from './Person.module.css';
 
-const person = (props) => {
-    return (
+class Person extends Component {
+   render(){
+      console.log("Inside Person component");
+      return (
          <div className={styles.Person}>
-            <h1>{props.title}</h1>
-            <p onClick={props.click}>My name is {props.name} and age is {props.age}</p>
-            <p>{props.children}</p>
-            <input value={props.name} onChange={props.change}/>
+            <h1>{this.props.title}</h1>
+            <p onClick={this.props.click}>My name is {this.props.name} and age is {this.props.age}</p>
+            <p>{this.props.children}</p>
+            <input value={this.props.name} onChange={this.props.change}/>
          </div>)
+   }
 };
 
 //\[ //g
 //....................Math.'.'.anchor.apply.''.anchor.apply.'.'.'.'.''''.anchor.'.'.'.'.'.'.anchor.apply.'''''']
 
-export default person;
+export default Person;
