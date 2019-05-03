@@ -38,22 +38,22 @@ const  cockpit = (props) => {
         btnClass = classes.red;
     }
 
-    if(props.personsLength <= 3){
+    if(props.personsLength === 3){
       assignedClasses.push(classes.red);
     }
-    if(props.personsLength <=2){
-      assignedClasses.push(classes.pink);
+    if(props.personsLength ===2){
+      assignedClasses.push(classes.blue);
     }
-    if(props.personsLength <=1){
+    if(props.personsLength ===1){
       assignedClasses.push(classes.yellow);
     }
-    if(props.personsLength <=0){
-        assignedClasses.push(classes.salmon);
+    if(props.personsLength ===0){
+        assignedClasses.push(classes.green);
     }
 
     return (
         <div className={classes.Cockpit}>
-        <h1 className={assignedClasses}>F</h1>
+        <h2 className={assignedClasses}>{props.title}</h2>
         <button className={btnClass} onClick={props.clicked}>Toggle Person</button>
         </div>
     );
