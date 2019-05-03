@@ -14,12 +14,11 @@ const  cockpit = (props) => {
   useEffect(() => {
     console.log("[Cockpit.js] - useEffect");
     //http request
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       alert('Date saved to cloud!');
     }, 1000);
 
     return () => {
-        clearTimeout(timer);
         console.log("[Cockpit.js] - clean up");
     };
 

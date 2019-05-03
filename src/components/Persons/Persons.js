@@ -2,36 +2,32 @@ import React, {Component} from 'react';
 import Person from '../Persons/Person/Person';
 
 class Persons extends Component { 
-  // static getDerivedStateFromProps(props,state){
-  //   console.log("getDerivedStateFromProps - props update");
-  //   console.log(props + "--------" + state);
-  // }
 
   componentDidUpdate(preprops, prestate, snapshot){
-    console.log("componentdidupdate");
+    console.log("[Persons.js] componentdidupdate **************");
     console.log(snapshot);
   }
 
   shouldComponentUpdate(nextprops, nextstate){
-    console.log("shouldComponentUpdate");
-    return true;
+    console.log("[Persons.js] shouldComponentUpdate *************");
+    if(nextprops.persons !== this.props.persons){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   componentWillUnmount(){
-    console.log("[Persons.js - componentwillUnmount()");
+    console.log("[Persons.js] - componentwillUnmount()***********");
   }
 
   getSnapshotBeforeUpdate(preprops, prestate){
-    console.log("getSnapshotBeforeUpdate");
+    console.log("[Persons.js] getSnapshotBeforeUpdate *************");
     return {message: 'Snapshot!'};
   }
 
-  // componentWillUpdate(){
-  //   console.log("componentWillUpdate");
-  // }
-
   render(){
-      console.log("Persons component");
+      console.log("[Persons.js] Persons component ****************");
       return this.props.persons.map((person,index) => { 
       return <Person 
       click={() => this.props.clicked(index)}
