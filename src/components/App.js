@@ -4,6 +4,11 @@ import classes from '../components/App.module.css';
 //import ErrorBoundry from '../components/ErrorBoundry/ErrorBoundry';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
+import withClasses from '../hoc/withClasses';
+import Aux from '../hoc/Auxiliary';
+import AuthContext from '../context/auth-context';
+
 
 class App extends Component {
 
@@ -28,7 +33,9 @@ class App extends Component {
        {id:'4', name:"Adam", age: 20}
      ],
      showPerson:false,
-     showCockpit:true
+     showCockpit:true,
+     changeCounter:0,
+     authenticated:false
   }
 
 switchNameHandler = () => {
@@ -52,7 +59,13 @@ changeNameHandler = (event, id) => {
   person.name = event.target.value;
   const persons = [...this.state.persons];
   persons[personIndex] = person;
-  this.setState({persons:persons});
+
+  this.setState((preState, props) => { 
+    return {
+      persons:persons,
+      changeCounter: preState.changeCounter + 1
+    };
+  });
 }
 
 togglePersonHandler = () => {
@@ -83,6 +96,10 @@ componentDidMount(){
  console.log("componentDidMount()");
 }
 
+loginHandler = () => {
+ this.setState({authenticated:true});
+}
+
   render() {
     console.log("render()");
   let persons = null;
@@ -90,18 +107,23 @@ componentDidMount(){
     persons = <Persons 
           persons={this.state.persons} 
           clicked={this.deletePersonHandler} 
-          changed={this.changeNameHandler} />;
+          changed={this.changeNameHandler} 
+          iaAuthenticated={this.state.authenticated}/>;
   }
 
     return (
-      <div className={classes.App}>
+      //<WithClass classes={classes.App}>
+      <Aux>
       <button onClick={() => {
           this.setState({showCockpit:false});
         }}>Remove Cockpit</button>
 
+        <AuthContext.Provider value = {{authenticated:this.state.authenticated, 
+          login:this.loginHandler}}>
         {
           this.state.showCockpit ? 
           <Cockpit 
+           login={this.loginHandler}
            title={this.props.appTitle}
            showPersons={this.state.showPersons} 
            personsLength={this.state.persons.length} 
@@ -110,11 +132,12 @@ componentDidMount(){
          : null
         }  
         {persons}
-
-    </div>
+        </AuthContext.Provider>
+    </Aux>
+    //</WithClass>
 
     );
   }
 }
 
-export default App;
+export default withClasses(App, classes.App);

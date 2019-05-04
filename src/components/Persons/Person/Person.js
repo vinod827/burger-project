@@ -1,20 +1,48 @@
-import React, {Component} from 'react';
-import styles from './Person.module.css';
+import React, {Component, Fragment} from 'react';
+import Aux from '../../../hoc/Auxiliary';
+import withClasses from '../../../hoc/withClasses';
+import style from '../Person/Person.module.css';
+import PropTypes from 'prop-types';
 
 class Person extends Component {
+
+   constructor(props){
+      super(props);
+      this.inputElementRef = React.createRef();
+   }
+
+   componentDidMount(){
+      //this.inputElement.focus();
+      this.inputElementRef.current.focus();
+   }
+
    render(){
       console.log("Inside Person component");
-      return (
-         <div className={styles.Person}>
+      return (  
+      <Aux>
+            {this.props.isAuth ? <p>User authenticated successfully </p> : <p>Please log in!</p>}
             <h1>{this.props.title}</h1>
-            <p onClick={this.props.click}>My name is {this.props.name} and age is {this.props.age}</p>
+            <p onClick={this.props.click}>My name is {this.props.name} and age is {this.props.age}
+            </p>
             <p>{this.props.children}</p>
-            <input value={this.props.name} onChange={this.props.change}/>
-         </div>)
+            <input value={this.props.name} onChange={this.props.change}
+            //ref={(inputEl) => {this.inputElement = inputEl}}
+            ref = {this.inputElementRef}
+            
+            />
+      </Aux>  
+      )       
    }
 };
+
+Person.propTypes = {
+   click: PropTypes.func,
+   name: PropTypes.string,
+   age: PropTypes.number,
+   change: PropTypes.func
+}
 
 //\[ //g
 //....................Math.'.'.anchor.apply.''.anchor.apply.'.'.'.'.''''.anchor.'.'.'.'.'.'.anchor.apply.'''''']
 
-export default Person;
+export default withClasses(Person, style.Person);
