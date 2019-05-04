@@ -123,7 +123,6 @@ loginHandler = () => {
         {
           this.state.showCockpit ? 
           <Cockpit 
-           login={this.loginHandler}
            title={this.props.appTitle}
            showPersons={this.state.showPersons} 
            personsLength={this.state.persons.length} 

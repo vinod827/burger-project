@@ -31,14 +31,16 @@ class Persons extends PureComponent {
   render(){
       console.log("[Persons.js] Persons component ****************");
       return this.props.persons.map((person,index) => { 
-      return <Person 
-      click={() => this.props.clicked(index)}
-      name={person.name} 
-      age={person.age}
-      key={index + 1}         
-      change={(event) => this.props.changed(event, person.id)}
-      isAuth = {this.props.iaAuthenticated}/>
-  })}
+          return <Person 
+          click={() => this.props.clicked(index)}
+          name={person.name} 
+          age={person.age}
+          key={index + 1}         
+          change={(event) => this.props.changed(event, person.id)}
+          isAuth = {this.props.iaAuthenticated}/>
+      })
+  }
+      
 }
 
 export default Persons;
